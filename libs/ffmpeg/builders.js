@@ -214,7 +214,7 @@ module.exports = (s,config,lang) => {
         const { videoWidth, videoHeight } = validateDimensions(channel.stream_scale_x,channel.stream_scale_y)
         if(inputMap)streamFlags.push(inputMap)
         if(channel.cust_stream)streamFlags.push(channel.cust_stream)
-        if(streamFlags.indexOf('-strict -2') === -1)streamFlags.push(`-strict -2`)
+        if(streamFlags.indexOf('-strict experimental') === -1)streamFlags.push(`-strict experimental`)
         if(channel.stream_timestamp === "1" && !videoCodecisCopy){
             streamFilters.push(buildTimestampFiltersFromConfiguration('stream_',e,`stream_channels`,channelNumber))
         }
@@ -397,7 +397,7 @@ module.exports = (s,config,lang) => {
             const { videoWidth, videoHeight } = validateDimensions(e.details.stream_scale_x,e.details.stream_scale_y)
             if(inputMap)streamFlags.push(inputMap)
             if(e.details.cust_stream)streamFlags.push(e.details.cust_stream)
-            if(streamFlags.indexOf('-strict -2') === -1)streamFlags.push(`-strict -2`)
+            if(streamFlags.indexOf('-strict experimental') === -1)streamFlags.push(`-strict experimental`)
             //stream - timestamp
             if(e.details.stream_timestamp === "1" && !videoCodecisCopy){
                 streamFilters.push(buildTimestampFiltersFromConfiguration('stream_',e))
@@ -533,7 +533,7 @@ module.exports = (s,config,lang) => {
             if(inputMap)recordingFlags.push(inputMap)
             if(e.details.cust_record)customRecordingFlags.push(e.details.cust_record)
             //record - resolution
-            if(customRecordingFlags.indexOf('-strict -2') === -1)customRecordingFlags.push(`-strict -2`)
+            if(customRecordingFlags.indexOf('-strict experimental') === -1)customRecordingFlags.push(`-strict experimental`)
             // if(customRecordingFlags.indexOf('-threads') === -1)customRecordingFlags.push(`-threads 10`)
             if(!videoCodecisCopy){
                 if(videoWidth && videoHeight){
