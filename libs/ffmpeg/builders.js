@@ -284,7 +284,7 @@ module.exports = (s,config,lang) => {
             case'hls':
                 const hlsTime = !isNaN(parseInt(channel.hls_time)) ? `${parseInt(channel.hls_time)}` : '2'
                 const hlsListSize = !isNaN(parseInt(channel.hls_list_size)) ? `${parseInt(channel.hls_list_size)}` : '2'
-                if(videoCodec !== 'h264_vaapi' && !videoCodecisCopy){
+                if(!videoCodec.startsWith('h264_') && !videoCodec.startsWith('h265_') && !videoCodecisCopy){
                     if(!arrayContains('-tune',streamFlags)){
                         streamFlags.push(`-tune zerolatency`)
                     }
@@ -459,7 +459,7 @@ module.exports = (s,config,lang) => {
                 case'hls':
                     const hlsTime = !isNaN(parseInt(e.details.hls_time)) ? `${parseInt(e.details.hls_time)}` : '2'
                     const hlsListSize = !isNaN(parseInt(e.details.hls_list_size)) ? `${parseInt(e.details.hls_list_size)}` : '2'
-                    if(videoCodec !== 'h264_vaapi' && !videoCodecisCopy){
+                    if(!videoCodec.startsWith('h264_') && !videoCodec.startsWith('h265_') && !videoCodecisCopy){
                         if(!arrayContains('-tune',streamFlags)){
                             streamFlags.push(`-tune zerolatency`)
                         }
@@ -743,7 +743,7 @@ module.exports = (s,config,lang) => {
             if(outputFilters.length > 0){
                 outputFlags.push(`-vf "${outputFilters.join(',')}"`)
             }
-            if(videoCodec !== 'h264_vaapi' && !videoCodecisCopy){
+            if(!videoCodec.startsWith('h264_') && !videoCodec.startsWith('h265_') && !videoCodecisCopy){
                 if(!arrayContains('-tune',outputFlags)){
                     outputFlags.push(`-tune zerolatency`)
                 }
